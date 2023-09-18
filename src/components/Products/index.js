@@ -13,12 +13,14 @@ const Products = ({ products }) => {
   const [addedItems, setAddedItems] = useState({});
   const [wishlistItems, setWishlistItems] = useState({});
 
-  const handleAddToCart = (index) => {
+
+  const toggleAddToCart = (index) => {
     setAddedItems((prevAddedItems) => ({
       ...prevAddedItems,
-      [index]: true,
+      [index]: !prevAddedItems[index],
     }));
   };
+
 
   const toggleAddToWishlist = (index) => {
     setWishlistItems((prevWishlistItems) => ({
@@ -42,7 +44,7 @@ const Products = ({ products }) => {
             <p className="products-item-installments">em até <strong>{item.numberOfInstallments}x de R$ {item.installmentValue}</strong> sem juros</p>
             <button
               className={`products-item-addToCart ${addedItems[index] ? 'productAdded' : ''}`}
-              onClick={() => handleAddToCart(index)}
+              onClick={() => toggleAddToCart(index)}
             >
               {addedItems[index] ? 'ADICIONADO' : 'ADICIONAR'}
             </button>
